@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tamil Nadu Tourism</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Tamil:wght@700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" crossorigin="anonymous" />
+  <style>
+    html { scroll-behavior: smooth; font-size: 16px; box-sizing: border-box; }
+    *, *:before, *:after { box-sizing: inherit; }
+    body {
+      font-family: 'Noto Serif Tamil', serif;
+      margin: 0; color: #3e2723;
+      background: linear-gradient(rgba(0,0,0,0.10),rgba(245,235,180,0.09)), url('yellow-blue-black-gradient-background-free-photo.jpg') no-repeat center center / cover;
+      overflow-x: hidden;
+    }
+    /* Logo styles */
+    .site-logo {
+      display: flex; align-items: center; text-decoration: none;
+      margin-right: 18px;
+    }
+    .logo-img {
+      height: 44px;
+      width: auto;
+      margin-right: 10px;
+      display: block;
+      background: transparent;
+    }
+    .logo-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.28em;
+      font-weight: bold;
+      color: #800000;
+      letter-spacing: .5px;
+      text-shadow: 0 1px 3px #f5e1a4;
+    }
+    header {
+      background: rgba(0,0,0,0.09);
+      color: #fffdd0;
+      padding: 56px 3vw 32px 3vw;
+      text-align: center;
+      min-height: 160px;
+    }
+    #typed-headline {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.45em;
+      color: #ffd700;
+      margin-top: 14px;
+      text-shadow: 0 1px 7px #502a00;
+      min-height: 1.2em;
+    }
+    header h1 {
+      font-size: 2em;
+      background: rgba(0, 0, 0, 0.36);
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-shadow: 1px 1px 7px #000;
+      display: inline-block;
+      margin-bottom: 0;
+    }
+    nav {
+      background: #f5e1a4;
+      padding: 0.4em 1vw;
+      position: sticky;
+      top: 0; z-index: 99;
+      display: flex; align-items: center;
+      max-width: 1100px; margin: 0 auto;
+    }
+    #menu-toggle { display: none; font-size: 2em; background: none; border: none; margin-right: 13px; color: #800000; cursor: pointer;}
+    #nav-links { display: flex; gap: 18px; flex-wrap: wrap; align-items: center; margin-left: auto;}
+    nav a:not(.site-logo) { white-space: nowrap; text-decoration: none; color: #800000; font-weight: bold; transition: color 0.3s; display: inline-flex; align-items: center; gap:6px; font-size: 1em;}
+    nav a:not(.site-logo):hover { color: #3e2723;}
+    .theme-switch { margin-left: 19px; color: #800000; font-size: 1em; display: flex; align-items: center; gap:8px; }
+    #darkModeToggle { accent-color: #800000; width:20px; height:20px;}
+    /* Responsive Navbar and Logo */
+    @media (max-width: 850px) {
+      nav { max-width: 98vw; }
+      .logo-title { font-size: 1em; }
+    }
+    @media (max-width:700px) {
+      nav { flex-wrap: wrap; flex-direction: column; align-items: flex-start; padding: 1em 2vw;}
+      #menu-toggle { display: block; margin-bottom: 4px;}
+      #nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100vw;
+        background: #f5e1a4;
+        position: relative;
+        left: 0; top: 0;
+        max-height: 230px;
+        overflow-y: auto;
+        box-shadow: 0 5px 12px rgba(0,0,0,0.06);
+      }
+      #nav-links.show { display: flex;}
+      nav a:not(.site-logo) { font-size: 1em; margin: 7px 2vw; }
+      .site-logo { margin-bottom: 3px;}
+    }
+    main, section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 26px 3vw;
+      box-sizing: border-box;
+    }
+    section h2 {
+      color: #fff;
+      padding: 11px 0 11px 12px;
+      background: linear-gradient(90deg, #f2cc64, #b18827);
+      border-left: 4px solid #ffcc00;
+      border-radius: 6px;
+      text-shadow: 1px 1px 2px #000;
+      margin: 0 0 17px 0;
+    }
+    .about-text { font-size: 1.09em; line-height: 1.7; margin-bottom: 23px;}
+    .about-list { margin:0 0 13px 22px; padding:0;}
+    .about-list li { margin: 0 0 8px 0; }
+    .stats-row { display: flex; gap:22px; justify-content:center; margin:22px auto 0 auto; flex-wrap:wrap;}
+    .stat-block { background: rgba(255,255,255,0.60); border-radius:9px; padding: 9px 17px; font-size:1.08em; text-align:center; box-shadow:0 1px 7px rgba(240,180,40,0.07);}
+    .stat-number { font-size:1.5em; color:#b38003;font-family:'Montserrat',sans-serif; display:block; min-width:3ch;}
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+      gap: 20px;
+      margin-top: 14px;
+    }
+    .gallery-item {
+      background: #fef7dc;
+      border-radius: 12px;
+      box-shadow: 0 2px 13px rgba(155,120,30,0.08);
+      overflow: hidden;
+      transition: transform 0.18s;
+      position: relative;
+    }
+    .gallery-item:hover { transform: scale(1.018);}
+    .gallery-item img { width:100%; height:142px; object-fit:cover; display:block;}
+    .gallery-caption { padding: 8px 7px; background: rgba(255,255,255,0.90); font-weight:500; text-align:center; color: #3e2723; }
+    .gallery-item a { color:inherit; text-decoration:none; display:block; }
+    .ratings-comments {background:#fff; border-radius:9px;box-shadow:0 2px 7px rgba(210,190,110,0.06); max-width:420px;margin:21px auto 0 auto;padding:16px;}
+    .comment-block {border-bottom:1px solid #e2c976; padding-bottom:12px; margin-bottom:10px;}
+    .comment-block:last-child {border-bottom:none;}
+    .user-name {font-weight:600; color:#844600;}
+    .star { color: #ffc107; font-size: 1em; }
+    .event-list { display: flex; flex-wrap:wrap; gap:18px; }
+    .event-card { background:#fff8e2; border-radius:13px; box-shadow:0 2px 11px rgba(243,182,46,0.05); padding:17px 14px 14px 14px; min-width:175px; max-width:255px; flex:1 1 205px; margin-bottom:13px; }
+    .event-title { font-size:1.10em; color: #844600; margin-bottom:2px;}
+    .event-date { font-weight:bold; color:#b18100;}
+    .event-desc { color:#755523; margin-bottom: 6px; }
+    .event-book { margin-top: 7px; }
+    .event-confirm { color: #388e3c; padding-top: 5px; font-size: 0.98em;}
+    @media (max-width: 600px) {
+      main, section { padding: 10px 2vw; }
+      .stats-row, .event-list { flex-direction: column; align-items: stretch; gap: 10px; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+    /* Laptop/Desktop layout */
+    @media (min-width: 901px) {
+      body, nav, #nav-links, main, section { max-width: 1100px; margin-left: auto; margin-right: auto; }
+    }
+    /* Dark mode */
+    body.dark-mode { background-color: #1d1b1a; color: #f5ebc7; }
+    body.dark-mode nav { background: #28250d; color: #fff194; }
+    body.dark-mode section h2, body.dark-mode .gallery-item, body.dark-mode .ratings-comments { background: #28250d; }
+    /* Fake booking button */
+    .btn-animate { background: linear-gradient(90deg, #fad961, #f76b1c); color: #fff; border: none; border-radius: 22px; padding: 9px 20px; font-size:1em; cursor: pointer; font-weight: bold;}
+    .btn-animate[disabled] { opacity: .62; cursor: not-allowed;}
+    footer {
+      text-align: center;
+      padding: 16px 4vw 10px 4vw;
+      background: #f0e4cc;
+      font-size: 1em;
+      color: #7c6703;
+      margin-top: 34px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html" class="site-logo">
+      <!-- replace logo.svg with your desired logo — SVG, PNG, or JPG! -->
+      <img src="logo.jpg.png" alt="Tamil Nadu Tourism Logo" class="logo-img" />
+      <span class="logo-title">Tamil Nadu Tourism</span>
+    </a>
+    <button id="menu-toggle" aria-label="Open navigation">&#9776;</button>
+    <div id="nav-links">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+      <a href="booking.html"><i class="fas fa-bed"></i> Booking</a>
+      <a href="events.html"><i class="fas fa-calendar-alt"></i> Events</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
+    <label class="theme-switch">
+      <input type="checkbox" id="darkModeToggle" /> Dark Mode
+    </label>
+  </nav>
+  <header>
+    <h1>Discover the Beauty of Tamil Nadu</h1>
+    <div id="typed-headline"></div>
+  </header>
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-block"><span class="stat-number" data-count="4000">0</span>Temples</div>
+    <div class="stat-block"><span class="stat-number" data-count="120">0</span>Hill Stations</div>
+    <div class="stat-block"><span class="stat-number" data-count="270">0</span>Festivals</div>
+    <div class="stat-block"><span class="stat-number" data-count="80">0</span>Pilgrimage Circuits</div>
+  </div>
+  <section>
+    <h2>About Tamil Nadu</h2>
+    <div class="about-text">
+      Tamil Nadu, the southern gateway to India, is a land of timeless temples, classical arts, lush hills, historic towns, and flavorful cuisine. Explore:<br>
+      <ul class="about-list">
+        <li><strong>Ancient Civilizations:</strong> Sangam period legacy, classical Tamil literature, and rich tradition.</li>
+        <li><strong>Architectural Marvels:</strong> Temples like Meenakshi Amman, Brihadeeswara &amp; Ramanathaswamy, renowned for their gopurams/festivals.</li>
+        <li><strong>Cultural Arts:</strong> Birthplace of Bharatanatyam dance, Carnatic music, Tanjore painting, and bronze sculpture.</li>
+        <li><strong>Festivals &amp; Rituals:</strong> Pongal, Chithirai, Natyanjali, Jallikattu, and hundreds of celebrations.</li>
+        <li><strong>Hill Stations &amp; Beaches:</strong> Ooty, Kodaikanal, Marina Beach, Valparai, Yercaud and charming hill railways.</li>
+        <li><strong>Signature Cuisine:</strong> Chettinad curries, dosai, filter coffee, Kanchipuram silk sarees, and crafts.</li>
+        <li><strong>UNESCO Heritage:</strong> Mahabalipuram, Living Chola Temples, Nilgiri Mountain Railways.</li>
+      </ul>
+      Experience a state where the ancient and modern intertwine.
+    </div>
+  </section>
+  <section>
+    <h2>Gallery: Marvels of Tamil Nadu</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Meenakshi_Temple" target="_blank">
+          <img src="Meenakshi_Amman_West_Tower.jpg" alt="Meenakshi Temple, Madurai">
+          <div class="gallery-caption">Meenakshi Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Brihadisvara_Temple" target="_blank">
+          <img src="Brihadeeswara_Temple_Gopuram_at_Night.jpg" alt="Brihadeeswara Temple, Thanjavur">
+          <div class="gallery-caption">Brihadeeswara Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Ooty" target="_blank">
+          <img src="Ooty_lake.jpg" alt="Ooty Hills">
+          <div class="gallery-caption">Ooty Hills</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Kanyakumari" target="_blank">
+          <img src="Vivekananda_Rock_Memorial,_Kanyakumari.jpg" alt="Kanyakumari Sunrise">
+          <div class="gallery-caption">Kanyakumari Sunrise</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Group_of_Monuments_at_Mahabalipuram" target="_blank">
+          <img src="Mamallapuram_view.jpg" alt="Mahabalipuram Shore Temple">
+          <div class="gallery-caption">Mahabalipuram Shore Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Ramanathaswamy_Temple" target="_blank">
+          <img src="Rameswaram_temple_(11).jpg" alt="Ramanathaswamy Temple, Rameswaram">
+          <div class="gallery-caption">Ramanathaswamy Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Chettinad" target="_blank">
+          <img src="The_Chettinad_palace_karaikudi_2013-09-07_00-11.jpg" alt="Chettinad Mansion">
+          <div class="gallery-caption">Chettinad Mansion</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Yercaud" target="_blank">
+          <img src="Yercaud_lake.jpg" alt="Yercaud Lake and Hills">
+          <div class="gallery-caption">Yercaud Lake & Hills</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Courtallam" target="_blank">
+          <img src="Courtallam.jpg" alt="Courtallam Falls">
+          <div class="gallery-caption">Courtallam Falls</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Annamalaiyar_Temple" target="_blank">
+          <img src="Arunachalam_temple_from_a_nearby_hill.jpg" alt="Annamalaiyar Temple, Tiruvannamalai">
+          <div class="gallery-caption">Annamalaiyar Temple</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Marina_Beach" target="_blank">
+          <img src="Chennai_-_bird's-eye_view.jpg" alt="Marina Beach, Chennai">
+          <div class="gallery-caption">Marina Beach</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Kanchipuram" target="_blank">
+          <img src="Parameswara_Vinnagaram.JPG" alt="Kanchipuram Temple">
+          <div class="gallery-caption">Kanchipuram Temples</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Valparai" target="_blank">
+          <img src="Tea_Estates_in_Valparai.jpg" alt="Valparai Tea Estates">
+          <div class="gallery-caption">Valparai Tea Estates</div>
+        </a>
+      </div>
+      <div class="gallery-item">
+        <a href="https://en.wikipedia.org/wiki/Thillai_Nataraja_Temple,_Chidambaram" target="_blank">
+          <img src="chidambaram_temple.jpg" alt="Chidambaram Nataraja Temple">
+          <div class="gallery-caption">Chidambaram Nataraja Temple</div>
+        </a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Traveler Ratings & Comments</h2>
+    <div class="ratings-comments">
+      <div class="comment-block">
+        <span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+        <span class="user-name">Aadhi N.</span> – "A memorable pilgrimage to Mahabalipuram!"
+      </div>
+      <div class="comment-block">
+        <span class="star">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="user-name">NISHA M.</span> – "We loved Ooty’s weather and the tea estates."
+      </div>
+      <div class="comment-block">
+        <span class="star">&#9733;&#9733;&#9733;&#9733;&#9734;</span>
+        <span class="user-name">NISHAAD AN.</span> – "Brihadeeswara Temple is stunning at night!"
+      </div>
+    </div>
+  </section>
+  <section>
+    <h2>Upcoming Events & Booking</h2>
+    <div class="event-list" id="event-list"></div>
+  </section>
+  <footer>
+    &copy; 2025 Tamil Nadu Tourism. All rights reserved.
+  </footer>
+  <script>
+    // Typing headline
+    const words = [
+      'Cultural Wonders',
+      'Temple Trails',
+      'Nature Escapes',
+      'Hill Station Retreats',
+      'Festivals Galore',
+      'Dravidian Splendor'
+    ];
+    let i=0, wordIndex=0;
+    function typeAni(){
+      if(i<=words[wordIndex].length){
+        document.getElementById('typed-headline').innerText = words[wordIndex].slice(0,i++);
+        setTimeout(typeAni,68);
+      } else {
+        setTimeout(()=>{i=0;wordIndex=(wordIndex+1)%words.length;typeAni();},980);
+      }
+    }
+    typeAni();
+    // Hamburger nav toggle
+    document.getElementById('menu-toggle').onclick = function() {
+      document.getElementById('nav-links').classList.toggle('show');
+    };
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 700) document.getElementById('nav-links').classList.remove('show');
+    });
+    // Dark mode toggle
+    document.getElementById('darkModeToggle').addEventListener('change', function () {
+      document.body.classList.toggle('dark-mode', this.checked);
+    });
+    // Stats counters
+    document.querySelectorAll('.stat-number').forEach(stat => {
+      let update = () => {
+        let target = +stat.getAttribute('data-count');
+        let current = +stat.innerText;
+        let increment = Math.ceil(target/60);
+        if(current < target){
+          stat.innerText = Math.min(current+increment, target);
+          setTimeout(update, 33);
+        }
+      }; update();
+    });
+    // Events with booking and ratings
+    const eventData = [
+      {title:'Chithirai Festival', date:'2025-08-04', desc:'Madurai, famous chariot procession.',booked:false,rating:5},
+      {title:'Pongal Harvest', date:'2025-01-15', desc:'Village celebration, Kolam displays.',booked:false,rating:4},
+      {title:'Kodaikanal Summer Fest', date:'2025-05-12', desc:'Flower shows, boat races & music!',booked:false,rating:5},
+      {title:'Natyanjali Festival, Chidambaram', date:'2025-03-19', desc:'Classical dance festival at ancient Shiva temple.',booked:false,rating:4}
+    ];
+    function renderEvents() {
+      const list = document.getElementById('event-list');
+      list.innerHTML = '';
+      eventData.forEach((ev,idx)=>{
+        let stars = '★'.repeat(ev.rating) + (ev.rating<5?'☆'.repeat(5-ev.rating):'');
+        let card = document.createElement('div');
+        card.className = 'event-card';
+        card.innerHTML = `
+          <div class="event-title">${ev.title}</div>
+          <div class="event-date">${ev.date}</div>
+          <div class="rating-row"><span class="star">${stars}</span></div>
+          <div class="event-desc">${ev.desc}</div>
+          <div class="event-book">
+            <button onclick="bookEvent(${idx})" class="btn-animate" ${ev.booked?'disabled':''}>${ev.booked ? 'Booked!' : 'Book Event'}</button>
+            ${ev.booked ? '<span class="event-confirm">Booking confirmed</span>' : ''}
+          </div>
+        `;
+        list.appendChild(card);
+      });
+    }
+    window.bookEvent = function(idx) {
+      eventData[idx].booked = true;
+      renderEvents();
+    };
+    renderEvents();
+  </script>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>
